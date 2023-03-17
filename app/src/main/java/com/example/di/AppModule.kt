@@ -1,7 +1,9 @@
 package com.example.di
 
+import com.example.api.CustomApi
 import com.example.api.MealApi
 import com.example.utils.constants.Companion.base_url
+import com.example.utils.constants.Companion.base_url1
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -17,14 +19,18 @@ class AppModule {
 
     @Provides
     @Singleton
-    fun provideRetrofit(): Retrofit =
+    fun provideRetrofit(): Retrofit.Builder =
         Retrofit.Builder()
-            .baseUrl(base_url)
             .addConverterFactory(GsonConverterFactory.create())
-            .build()
+
 
     @Provides
     @Singleton
-    fun providesUserApi(retrofit: Retrofit): MealApi =
-        retrofit.create(MealApi::class.java)
+    fun providesUserApi(retrofit: Retrofit.Builder): MealApi =
+        retrofit.baseUrl(base_url).build().create(MealApi::class.java)
+
+    @Provides
+    @Singleton
+    fun providesCustomApi(retrofit: Retrofit.Builder): CustomApi =
+        retrofit.baseUrl(base_url1).build().create(CustomApi::class.java)
 }

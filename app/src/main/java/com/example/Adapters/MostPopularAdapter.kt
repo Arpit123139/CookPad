@@ -1,5 +1,6 @@
 package com.example.Adapters
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,16 +9,24 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.data.MealResponse
 import com.example.data.PopularItem
 import com.example.foodreciepie.R
 
-class MostPopularAdapter: ListAdapter<PopularItem,MostPopularAdapter.MostPopularViewHolder>(DiffCallback()){
+class MostPopularAdapter(private val listener: (PopularItem) -> Unit): ListAdapter<PopularItem,MostPopularAdapter.MostPopularViewHolder>(DiffCallback()){
 
     inner class MostPopularViewHolder(view: View):RecyclerView.ViewHolder(view){
         val PopularImage=view.findViewById<ImageView>(R.id.img_popular_meal)
 
+        init {
+            itemView.setOnClickListener {
+                listener.invoke(getItem(adapterPosition))
+            }
+        }
         fun bind(PopulerItemData:PopularItem){
+
             with(PopulerItemData){
+                Log.d("ARPIT ADAPTER ", "${PopulerItemData}")
                 Glide.with(itemView)
                     .load(strMealThumb)
                     .into(PopularImage)

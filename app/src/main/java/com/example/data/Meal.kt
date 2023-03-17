@@ -3,6 +3,8 @@ package com.example.data
 import com.google.gson.annotations.SerializedName
 
 data class Meal (
+
+
     @SerializedName("strMealThumb")
     val image:String,
 
@@ -19,6 +21,9 @@ data class Meal (
     val area:String,
 
     @SerializedName("strYoutube")
-    val yt:String
+    val yt:String,
 
-        )
+    @SerializedName("idMeal")
+    val id:String
+
+    )

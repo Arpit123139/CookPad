@@ -115,6 +115,7 @@
                     android:layout_height="120dp"
                     android:layout_marginStart="25dp"
                     android:layout_marginEnd="10dp"
+                    tools:listitem="@layout/popular_item"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_over_pup_items" />
 
@@ -149,7 +150,9 @@
                         android:id="@+id/recycler_view"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:scrollbars="none" />
+                        android:scrollbars="none"
+                        tools:listitem="@layout/category_item"/>
+
                 </androidx.cardview.widget.CardView>
             </androidx.constraintlayout.widget.ConstraintLayout>
         </RelativeLayout>

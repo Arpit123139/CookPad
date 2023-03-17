@@ -2,20 +2,23 @@ package com.example.home
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
+import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
+import com.example.Adapters.CategoryAdapter
 import com.example.Adapters.MostPopularAdapter
-import com.example.foodreciepie.R
 import com.example.foodreciepie.databinding.FragmentHomeBinding
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.observeOn
+
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
@@ -23,8 +26,10 @@ class HomeFragment : Fragment() {
     private val viewModel: HomeViewModel by viewModels()
     private lateinit var binding:FragmentHomeBinding
     private lateinit var adapter: MostPopularAdapter
+    private lateinit var adapter1: CategoryAdapter
     private lateinit var image:String
     private lateinit var name:String
+    private lateinit var id:String
     private lateinit var description:String
     private lateinit var category:String
     private lateinit var area:String
@@ -42,18 +47,20 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         getRandomMeal(view)
+        getPopularMeal(view)
+        getCategoryList(view)
+
 
         binding.imgRandomMeal.setOnClickListener {
 
-            val action=HomeFragmentDirections.actionHomeFragmentToDescriptionFragment2(image,name,description,category,area,yt);
+            val action=HomeFragmentDirections.actionHomeFragmentToDescriptionFragment2(id);
             findNavController().navigate(action)
         }
-
-
 
     }
 
     fun getRandomMeal(view:View){
+
         viewModel.getMeal()
         viewModel.mealLive.observe(viewLifecycleOwner, Observer {
             Log.d("ArpitFragment","URL "+it.meal.get(0).image)
@@ -64,19 +71,64 @@ class HomeFragment : Fragment() {
             category=it.meal.get(0).category
             area=it.meal.get(0).area
             yt=it.meal.get(0).yt
+            id=it.meal.get(0).id
 
             Glide.with(view)
                 .load(it.meal.get(0).image)
-                .into(view.findViewById(R.id.img_random_meal))
+                .into(view.findViewById(com.example.foodreciepie.R.id.img_random_meal))
 
 
             if(it.meal.get(0)?.image?.length!=0){
                 // Log.d("ArpitFragment","IF CONDITION  "+it)
-                view.findViewById<ProgressBar>(R.id.pb).visibility=View.INVISIBLE
+                view.findViewById<ProgressBar>(com.example.foodreciepie.R.id.pb).visibility=View.INVISIBLE
             }
 
         })
     }
 
+    fun getPopularMeal(view: View){
+
+        adapter= MostPopularAdapter() {
+            Toast.makeText(requireContext(),it.idMeal.toString(),Toast.LENGTH_LONG).show()
+            val action=HomeFragmentDirections.actionHomeFragmentToDescriptionFragment2(it.idMeal);
+            findNavController().navigate(action)
+
+        }
+
+        val layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
+        val myList = binding.recViewMealsPopular
+        myList.layoutManager = layoutManager
+        myList.adapter= adapter
+
+        viewModel.getPopularMeal()
+        viewModel.popularMealLive.observe(viewLifecycleOwner,Observer{
+            Log.d("ARPIT LIVE DATA", "${it.meals}")
+
+            (myList.adapter as MostPopularAdapter).submitList(it.meals)
+        })
+
+    }
+
+
+
+    fun getCategoryList(view:View){
+
+        val catList=binding.recyclerView
+        adapter1= CategoryAdapter(){
+            Toast.makeText(requireContext(),"Category clicked ${it.strCategory}",Toast.LENGTH_LONG).show()
+            val action=HomeFragmentDirections.actionHomeFragmentToCategoryMealFragment(it.strCategory);
+            findNavController().navigate(action)
+        }
+        val layoutManager=GridLayoutManager(requireContext(),3,GridLayoutManager.VERTICAL,false);
+
+        catList.adapter=adapter1
+        catList.layoutManager=layoutManager
+
+        viewModel.getCategoryList()
+        viewModel.categoryListLive.observe(viewLifecycleOwner, Observer{
+
+            (catList.adapter as CategoryAdapter).submitList(it.categories)
+        })
+    }
 
 }

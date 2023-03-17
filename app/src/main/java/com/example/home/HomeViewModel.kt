@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.data.CategoryResponse
 import com.example.data.MealResponse
 import com.example.data.MealRepository
 import com.example.data.PopularResponse
@@ -25,6 +26,18 @@ class HomeViewModel @Inject constructor (
     val mealLive: LiveData<MealResponse>
         get()=_meal
 
+    private var _popularmeal=MutableLiveData<PopularResponse>()
+    val popularMealLive: LiveData<PopularResponse>
+        get()=_popularmeal
+
+    private var _onemeal=MutableLiveData<MealResponse>()
+    val oneLiveData:LiveData<MealResponse>
+        get()=_onemeal
+
+    private var _categoryList=MutableLiveData<CategoryResponse>()
+    val categoryListLive:LiveData<CategoryResponse>
+        get() = _categoryList
+
     fun getMeal(){
         viewModelScope.launch {
             val mealResponse=repository.getMeal();
@@ -36,9 +49,7 @@ class HomeViewModel @Inject constructor (
         }
     }
 
-    private var _popularmeal=MutableLiveData<PopularResponse>()
-    val popularMealLive: LiveData<PopularResponse>
-        get()=_popularmeal
+
 
     fun getPopularMeal(){
         viewModelScope.launch {
@@ -46,6 +57,24 @@ class HomeViewModel @Inject constructor (
             _popularmeal.value=popularResponse
 
             Log.d("ArpitViewPopularItem",popularResponse.toString())
+        }
+    }
+
+    fun getOneMeal(id: String){
+    viewModelScope.launch {
+        val response=repository.getOneMeal(id)
+        Log.d("OneMealViewModel", "getOneMeal:${response} ")
+        _onemeal.value=response
+    }
+    }
+
+
+    fun getCategoryList(){
+
+        viewModelScope.launch {
+            val response=repository.getCategoryList()
+            _categoryList.value=response
+            Log.d("CATEGORY LIST", response.toString())
         }
     }
 }

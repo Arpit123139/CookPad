@@ -75,7 +75,7 @@
             android:textColor="@color/black"
             android:textStyle="bold"
             android:textSize="40dp"
-            app:layout_constraintBottom_toTopOf="@+id/email"
+            app:layout_constraintBottom_toTopOf="@+id/email1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias=".5"
             app:layout_constraintStart_toStartOf="parent"
@@ -83,7 +83,7 @@
             app:layout_constraintVertical_bias=".3"
             app:layout_constraintWidth_percent=".8" />
         <EditText
-            android:id="@+id/email"
+            android:id="@+id/email1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
@@ -100,7 +100,7 @@
             app:layout_constraintHorizontal_bias=".5"/>
 
         <EditText
-            android:id="@+id/password"
+            android:id="@+id/password1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:hint="Password"
@@ -111,7 +111,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/email"
+            app:layout_constraintTop_toBottomOf="@+id/email1"
             app:layout_constraintVertical_bias="0"
             android:layout_marginTop="20dp"
             app:layout_constraintWidth_percent=".8" />
@@ -140,7 +140,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/signup_btn" />
+            app:layout_constraintTop_toBottomOf="@+id/login_btn" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab_fb2"
@@ -155,7 +155,7 @@
             app:layout_constraintEnd_toStartOf="@+id/fab_google2"
             app:layout_constraintHorizontal_bias="1"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/signup_btn"
+            app:layout_constraintTop_toBottomOf="@+id/login_btn"
             app:layout_constraintVertical_bias="0.492" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -171,7 +171,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0"
             app:layout_constraintStart_toEndOf="@+id/fab_google2"
-            app:layout_constraintTop_toBottomOf="@+id/signup_btn"
+            app:layout_constraintTop_toBottomOf="@+id/login_btn"
             app:layout_constraintVertical_bias="0.492" />
 
 

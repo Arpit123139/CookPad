@@ -23,24 +23,25 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val bottomNavigationView = findViewById<View>(R.id.bottom_navigation) as BottomNavigationView
-        bottomNavigationView.setOnNavigationItemSelectedListener { item ->
-            when (item.itemId) {
-                R.id.home -> {
-                   supportFragmentManager.beginTransaction().replace(R.id.fragmentContainerView, HomeFragment())
-                        .commit();
-                }
-                R.id.favourite-> {
-                    supportFragmentManager.beginTransaction().replace(R.id.fragmentContainerView, FavouriteFragment())
-                        .commit();
-                }
-                R.id.category -> {
-                    supportFragmentManager.beginTransaction().replace(R.id.fragmentContainerView, CategoryFragment())
-                        .commit();
-                }
-            }
-            true
-        }
+
+//        val bottomNavigationView = findViewById<View>(R.id.bottom_navigation) as BottomNavigationView
+//        bottomNavigationView.setOnNavigationItemSelectedListener { item ->
+//            when (item.itemId) {
+//                R.id.home -> {
+//                   supportFragmentManager.beginTransaction().replace(R.id.fragmentContainerView, HomeFragment())
+//                        .commit();
+//                }
+//                R.id.favourite-> {
+//                    supportFragmentManager.beginTransaction().replace(R.id.fragmentContainerView, FavouriteFragment())
+//                        .commit();
+//                }
+//                R.id.category -> {
+//                    supportFragmentManager.beginTransaction().replace(R.id.fragmentContainerView, CategoryFragment())
+//                        .commit();
+//                }
+//            }
+//            true
+//        }
 
     }
 }

@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.Signup.MainActivity2">
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottes"
+        android:layout_width="match_parent"
+        app:lottie_rawRes="@raw/foodies"
+        app:lottie_autoPlay="true"
+        android:tint="@color/white"
+        android:repeatCount="-1"
+        android:repeatMode="restart"
+        app:lottie_loop="true"
+        android:background="#ffff00"
+        android:scaleType="centerCrop"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent=".27"
+        app:layout_constraintVertical_bias="0"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:id="@+id/view"
+        android:background="@drawable/view_bg"
+        app:layout_constraintHeight_percent=".78"
+        app:layout_constraintVertical_bias="1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        >
+
+<!--        <androidx.viewpager.widget.ViewPager-->
+<!--            android:id="@+id/view_pager2"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="0dp"-->
+<!--            app:layout_constraintVertical_bias="0"-->
+<!--            app:layout_constraintHeight_percent=".7"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/tab_layout2"/>-->
+
+<!--        <com.google.android.material.tabs.TabLayout-->
+<!--            android:layout_width="match_parent"-->
+
+<!--            android:layout_height="wrap_content"-->
+<!--            android:id="@+id/tab_layout2"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent"-->
+<!--            app:layout_constraintVertical_bias="0"-->
+<!--            />-->
+
+        <TextView
+            android:id="@+id/txt"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/kaushan_script"
+            android:paddingLeft="10dp"
+            android:paddingTop="20dp"
+            android:paddingBottom="10dp"
+            android:text="SIGNUP"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textSize="40dp"
+            app:layout_constraintBottom_toTopOf="@+id/email"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias=".5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias=".3"
+            app:layout_constraintWidth_percent=".8" />
+        <EditText
+            android:id="@+id/email"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:hint="Email"
+            android:background="@drawable/text_bkg"
+            android:paddingTop="20dp"
+            android:paddingLeft="10dp"
+            android:paddingBottom="10dp"
+            app:layout_constraintWidth_percent=".8"
+            app:layout_constraintVertical_bias=".3"
+            app:layout_constraintHorizontal_bias=".5"/>
+
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="Password"
+            android:background="@drawable/text_bkg"
+            android:paddingLeft="10dp"
+            android:paddingTop="20dp"
+            android:paddingBottom="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/email"
+            app:layout_constraintVertical_bias="0"
+            android:layout_marginTop="20dp"
+            app:layout_constraintWidth_percent=".8" />
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="0dp"
+            android:id="@+id/signup_btn"
+            android:layout_height="wrap_content"
+            app:layout_constraintWidth_percent=".8"
+            app:layout_constraintVertical_bias=".7"
+            android:text="SignUp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:background="@drawable/button_bg" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_google2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
+            android:elevation="35dp"
+            android:src="@drawable/google"
+            app:tint="@null"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/signup_btn" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_fb2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
+            android:elevation="35dp"
+            android:src="@drawable/facebook"
+            android:layout_marginRight="20dp"
+            app:tint="@null"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/fab_google2"
+            app:layout_constraintHorizontal_bias="1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/signup_btn"
+            app:layout_constraintVertical_bias="0.492" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_twitter2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
+            android:elevation="35dp"
+            android:layout_marginLeft="20dp"
+            android:src="@drawable/twitter"
+            app:tint="@null"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toEndOf="@+id/fab_google2"
+            app:layout_constraintTop_toBottomOf="@+id/signup_btn"
+            app:layout_constraintVertical_bias="0.492" />
+
+        <TextView
+            android:id="@+id/login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="170dp"
+            android:layout_marginTop="4dp"
+            android:fontFamily="cursive"
+            android:text="Already a User ?"
+            android:textAlignment="textEnd"
+            android:textColor="#0000FF"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/signup_btn" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

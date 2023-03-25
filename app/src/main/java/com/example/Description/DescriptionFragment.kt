@@ -3,18 +3,22 @@ package com.example.Description
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
+import com.example.data.Category
 import com.example.data.Meal
 import com.example.foodreciepie.R
 import com.example.foodreciepie.databinding.FragmentDescriptionBinding
 import com.example.home.HomeViewModel
+import com.example.utils.Network
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -24,6 +28,11 @@ class DescriptionFragment : Fragment() {
     private val viewModel: DescriptionViewModel by viewModels()
     private lateinit var image:String
     private lateinit var yt:String
+    private lateinit var name:String
+    private lateinit var area:String
+    private lateinit var category: String
+    private lateinit  var description:String
+    private lateinit var id1:String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,12 +48,33 @@ class DescriptionFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
          getData(view)
+
         val safeargs:DescriptionFragmentArgs by navArgs()
+         binding.btnSave.setOnClickListener {
 
-//        binding.btnSave.setOnClickListener {
-//                viewModel.saveMeal(Meal(safeargs.image,safeargs.name,safeargs.description,safeargs.categort,safeargs.area,safeargs.yt))
-//        }
+             saveMeal(Meal(name,area,category,description,yt,image,safeargs.id))
+         }
 
+    }
+
+    private fun saveMeal(meal: Meal) {
+        viewModel.saveMeal(meal);
+
+        viewModel._mealSaveLive.observe(viewLifecycleOwner, Observer {
+            when(it){
+                is Network.Loading -> {
+                    Toast.makeText(requireContext(),"Meal Saved",Toast.LENGTH_SHORT).show()
+                    Log.d("DescriptionFragment", it.data.toString())
+
+                }
+                is Network.Success -> {}
+                is Network.Error -> {
+                    Log.d("DescriptionFragment", it.message.toString())
+                }
+
+
+            }
+        })
     }
 
     fun getData(view: View){
@@ -56,6 +86,10 @@ class DescriptionFragment : Fragment() {
 
             yt=it.meal.get(0).yt
             image=it.meal.get(0).image
+            name=it.meal.get(0).name
+            area=it.meal.get(0).area
+            category=it.meal.get(0).category
+            description=it.meal.get(0).description
             binding.collapsingToolbar.title=it.meal.get(0).name
             binding.tvCategoryInfo.text=it.meal.get(0).category
             binding.tvInstructions.text=it.meal.get(0).description
@@ -66,11 +100,6 @@ class DescriptionFragment : Fragment() {
                 .into(binding.imgMealDetail)
         })
 
-//        binding.collapsingToolbar.title=safeargs.name
-//        binding.tvCategoryInfo.text=safeargs.categort
-//        binding.tvInstructions.text=safeargs.description
-//        binding.tvAreaInfo.text=safeargs.area
-        //setting the color of the text to white when it is collapsed or expanded
         binding.collapsingToolbar.setCollapsedTitleTextColor(resources.getColor(R.color.white))
         binding.collapsingToolbar.setExpandedTitleColor(resources.getColor(R.color.white))
 
@@ -79,7 +108,6 @@ class DescriptionFragment : Fragment() {
 
         binding.imgYoutube.setOnClickListener {
 
-            //val yt=safeargs.yt
             val intent=Intent(Intent.ACTION_VIEW, Uri.parse(yt))
             startActivity(intent)
         }

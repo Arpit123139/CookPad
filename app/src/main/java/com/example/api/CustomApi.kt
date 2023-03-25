@@ -10,9 +10,6 @@ import retrofit2.http.POST
 
 interface CustomApi {
 
-    @POST("meal/addMeal")
-    suspend fun saveMeal(@Body meal: Meal)
-
     @POST("user/signup")
     suspend fun signUp(@Body userRequest: UserRequest):Response<UserResponse>
 

@@ -3,12 +3,15 @@ package com.example.data
 import android.util.Log
 import com.example.api.CustomApi
 import com.example.api.MealApi
+import com.example.api.MealSaveApi
+import retrofit2.Response
 import javax.inject.Inject
 
 
 class MealRepository @Inject constructor(
     val meal:MealApi,
-    val customApi: CustomApi
+    val customApi: CustomApi,
+    val mealSaveApi: MealSaveApi
 ){
     suspend fun getMeal(): MealResponse {
       //  Log.d("ArpitRepo ",meal.getDish().meal.toString())
@@ -25,8 +28,8 @@ class MealRepository @Inject constructor(
         return meal.getOneItem(id)
     }
 
-    suspend fun saveMeal(meal: Meal){
-        customApi.saveMeal(meal)
+    suspend fun saveMeal(meal: Meal):Response<MealSaveResponse>{
+        return mealSaveApi.saveMeal(meal)
     }
 
     suspend fun getCategoryList():CategoryResponse{

@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.example.Adapters.CategoryAdapter
 import com.example.Adapters.MostPopularAdapter
+import com.example.BottomSheet.MealBottomSheetFragment
 import com.example.Category.CategoryFragment
 import com.example.Favourite.FavouriteFragment
 import com.example.foodreciepie.R
@@ -113,8 +114,13 @@ class HomeFragment : Fragment() {
 
         adapter= MostPopularAdapter() {
             Toast.makeText(requireContext(),it.idMeal.toString(),Toast.LENGTH_LONG).show()
-            val action=HomeFragmentDirections.actionHomeFragmentToDescriptionFragment2(it.idMeal);
-            findNavController().navigate(action)
+            val bottomSheet=MealBottomSheetFragment()
+            val b = Bundle()
+            b.putString("MEAL_ID", it.idMeal)
+
+            bottomSheet.arguments = b
+            bottomSheet.show(childFragmentManager,"BottomSheetDialog")
+
 
         }
 

@@ -22,6 +22,9 @@
         <action
             android:id="@+id/action_homeFragment_to_categoryFragment"
             app:destination="@id/categoryFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_mealBottomSheetFragment"
+            app:destination="@id/mealBottomSheetFragment" />
     </fragment>
     <fragment
         android:id="@+id/favouriteFragment"
@@ -110,6 +113,17 @@
         <action
             android:id="@+id/action_loginTabFragment_to_homeFragment2"
             app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mealBottomSheetFragment"
+        android:name="com.example.BottomSheet.MealBottomSheetFragment"
+        android:label="MealBottomSheetFragment" >
+        <argument
+            android:name="id"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_mealBottomSheetFragment_to_descriptionFragment2"
+            app:destination="@id/descriptionFragment2" />
     </fragment>
 
 

@@ -55,8 +55,9 @@ class HomeFragment : Fragment() {
 
                 }
                 R.id.category -> {
-                    parentFragmentManager.beginTransaction().replace(R.id.fragmentContainerView, CategoryFragment())
-                        .commit();
+                    val action=HomeFragmentDirections.actionHomeFragmentToCategoryFragment()
+                    findNavController().navigate(action)
+
                 }
             }
             true

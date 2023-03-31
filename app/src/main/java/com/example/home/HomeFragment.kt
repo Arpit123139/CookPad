@@ -16,7 +16,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.example.Adapters.CategoryAdapter
 import com.example.Adapters.MostPopularAdapter
+import com.example.Category.CategoryFragment
+import com.example.Favourite.FavouriteFragment
+import com.example.foodreciepie.R
 import com.example.foodreciepie.databinding.FragmentHomeBinding
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -40,6 +44,24 @@ class HomeFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding=FragmentHomeBinding.inflate(layoutInflater)
+
+        val bottomNavigationView = binding.bottomNavigation as BottomNavigationView
+        bottomNavigationView.setOnNavigationItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.home -> {}
+                R.id.favourite-> {
+                    val action=HomeFragmentDirections.actionHomeFragmentToFavouriteFragment()
+                    findNavController().navigate(action)
+
+                }
+                R.id.category -> {
+                    parentFragmentManager.beginTransaction().replace(R.id.fragmentContainerView, CategoryFragment())
+                        .commit();
+                }
+            }
+            true
+        }
+
         return binding.root
     }
 

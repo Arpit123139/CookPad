@@ -36,6 +36,7 @@ class DescriptionViewModel @Inject constructor(
         Log.d("DescriptionViewModel", "Hello View Model ")
         viewModelScope.launch {
            val response= mealRepository.saveMeal(meal)
+            Log.d("Description", response.body().toString())
             handle(response)
         }
     }
@@ -44,6 +45,7 @@ class DescriptionViewModel @Inject constructor(
 
         if (response.isSuccessful && response.body() != null) {
             _mealSave.value = Network.Success(response.body()!!)
+            Log.d("Description ViewModel", response.body().toString())
         } else if (response.errorBody() != null) {        //ERROR BODY HAS A JSON
             //parsing the JSON
             val errorObj = JSONObject(response.errorBody()!!.charStream().readText())

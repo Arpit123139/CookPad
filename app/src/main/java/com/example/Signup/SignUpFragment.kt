@@ -61,10 +61,10 @@ class SignUpFragment : Fragment() {
         fabGoogle.animate().translationY(0f).alpha(1f).setDuration(1000).setStartDelay(600).start()
         fabTwitter.animate().translationY(0f).alpha(1f).setDuration(1000).setStartDelay(800).start()
 
-        if(tokenManager.getToken()!=null){
-            val action=SignUpFragmentDirections.actionSignUpFragmentToHomeFragment()
-            findNavController().navigate(action)
-        }
+//        if(tokenManager.getToken()!=null){
+//            val action=SignUpFragmentDirections.actionSignUpFragmentToHomeFragment()
+//            findNavController().navigate(action)
+//        }
         return view;
     }
 

@@ -62,13 +62,13 @@ class DescriptionFragment : Fragment() {
 
         viewModel._mealSaveLive.observe(viewLifecycleOwner, Observer {
             when(it){
-                is Network.Loading -> {
+                is Network.Loading -> {}
+                is Network.Success -> {
                     Toast.makeText(requireContext(),"Meal Saved",Toast.LENGTH_SHORT).show()
                     Log.d("DescriptionFragment", it.data.toString())
-
                 }
-                is Network.Success -> {}
                 is Network.Error -> {
+                    Toast.makeText(requireContext(),it.message.toString(),Toast.LENGTH_SHORT).show()
                     Log.d("DescriptionFragment", it.message.toString())
                 }
 

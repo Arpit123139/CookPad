@@ -28,8 +28,18 @@ class MealRepository @Inject constructor(
         return meal.getOneItem(id)
     }
 
+
+
     suspend fun saveMeal(meal: Meal):Response<MealSaveResponse>{
         return mealSaveApi.saveMeal(meal)
+    }
+
+    suspend fun getAllMeal():Response<FavouriteMealResponse>{
+        return mealSaveApi.getAllMeal()
+    }
+
+    suspend fun deleteMeal(id:String){
+        return mealSaveApi.deleteMeal(id)
     }
 
     suspend fun getCategoryList():CategoryResponse{

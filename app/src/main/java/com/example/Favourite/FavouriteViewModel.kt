@@ -11,6 +11,7 @@ import com.example.data.MealRepository
 import com.example.data.MealSaveResponse
 import com.example.utils.Network
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import org.json.JSONObject
 import retrofit2.Response
@@ -38,12 +39,8 @@ class FavouriteViewModel @Inject constructor(
     }
 
    fun deleteMeal(id:String){
-//        _mealList.value!!.meal=_meal.value!!.data!!.meal.filter {
-//            it.id!=id
-//        }
 
         viewModelScope.launch {
-
             repository.deleteMeal(id)
         }
     }

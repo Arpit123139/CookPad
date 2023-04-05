@@ -38,17 +38,30 @@ class HomeViewModel @Inject constructor (
     val categoryListLive:LiveData<CategoryResponse>
         get() = _categoryList
 
+    private var _searchList=MutableLiveData<PopularResponse>()
+    val searchListLive:LiveData<PopularResponse>
+        get() = _searchList
+
+    private var saveStateRandomMeal:MealResponse?=null
     fun getMeal(){
+
+        saveStateRandomMeal?.let { randomMeal->
+            _meal.value=randomMeal
+            return
+        }
         viewModelScope.launch {
             val mealResponse=repository.getMeal();
             _meal.value=mealResponse
-
+            saveStateRandomMeal=_meal.value
 
             Log.d("ArpitView",mealResponse.toString())
             Log.d("ArpitView",_meal.value.toString())
         }
     }
 
+    init {
+
+    }
 
 
     fun getPopularMeal(){
@@ -75,6 +88,15 @@ class HomeViewModel @Inject constructor (
             val response=repository.getCategoryList()
             _categoryList.value=response
             Log.d("CATEGORY LIST", response.toString())
+        }
+    }
+
+    fun searchMeal(searchQuery:String){
+
+        viewModelScope.launch {
+            val response=repository.SearchMeal(searchQuery)
+
+            _searchList.value=response
         }
     }
 }

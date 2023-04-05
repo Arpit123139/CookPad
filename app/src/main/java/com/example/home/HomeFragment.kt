@@ -81,6 +81,11 @@ class HomeFragment : Fragment() {
             findNavController().navigate(action)
         }
 
+        binding.imgSearch.setOnClickListener {
+            val action=HomeFragmentDirections.actionHomeFragmentToSearchFragment();
+            findNavController().navigate(action)
+        }
+
     }
 
     fun getRandomMeal(view:View){

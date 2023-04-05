@@ -25,6 +25,9 @@
         <action
             android:id="@+id/action_homeFragment_to_mealBottomSheetFragment"
             app:destination="@id/mealBottomSheetFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
     </fragment>
     <fragment
         android:id="@+id/favouriteFragment"
@@ -104,6 +107,9 @@
         <action
             android:id="@+id/action_signUpFragment_to_loginTabFragment"
             app:destination="@id/loginTabFragment" />
+        <action
+            android:id="@+id/action_signUpFragment_to_descriptionFragment2"
+            app:destination="@id/descriptionFragment2" />
     </fragment>
     <fragment
         android:id="@+id/loginTabFragment"
@@ -123,6 +129,15 @@
             app:argType="string" />
         <action
             android:id="@+id/action_mealBottomSheetFragment_to_descriptionFragment2"
+            app:destination="@id/descriptionFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.example.home.SearchFragment"
+        android:label="fragment_search"
+        tools:layout="@layout/fragment_search" >
+        <action
+            android:id="@+id/action_searchFragment_to_descriptionFragment2"
             app:destination="@id/descriptionFragment2" />
     </fragment>
 

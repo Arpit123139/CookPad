@@ -4,6 +4,8 @@ import android.util.Log
 import com.example.api.CustomApi
 import com.example.api.MealApi
 import com.example.api.MealSaveApi
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import retrofit2.Response
 import javax.inject.Inject
 
@@ -39,7 +41,10 @@ class MealRepository @Inject constructor(
     }
 
     suspend fun deleteMeal(id:String){
-        return mealSaveApi.deleteMeal(id)
+        withContext(Dispatchers.IO){
+             mealSaveApi.deleteMeal(id)
+        }
+
     }
 
     suspend fun getCategoryList():CategoryResponse{
@@ -48,6 +53,10 @@ class MealRepository @Inject constructor(
 
     suspend fun getMealByCategory(category: String):PopularResponse{
         return meal.getMealByCategory(category)
+    }
+
+    suspend fun SearchMeal(searchQuery:String):PopularResponse{
+        return meal.searchMeals(searchQuery)
     }
 
 }

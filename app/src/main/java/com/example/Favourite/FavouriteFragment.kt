@@ -24,7 +24,9 @@ import com.example.utils.Network
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.*
 import java.sql.Time
+import java.util.concurrent.TimeUnit
 import kotlin.math.log
 
 @AndroidEntryPoint
@@ -79,8 +81,23 @@ class FavouriteFragment : Fragment() {
 
 
                 Toast.makeText(requireContext(),id.toString(),Toast.LENGTH_LONG).show()
-                viewModel.deleteMeal(id);
 
+
+
+
+
+                Log.d("Favourite_View_Model", "After View Model ")
+                CoroutineScope(Dispatchers.IO).launch {
+                    Log.d("Favourite_View_Model", "Inside Delay 2 ")
+                    delay(5000)
+                    viewModel.deleteMeal(id);
+
+                    Log.d("Favourite_View_Model", "Inside Delay ")
+                }
+
+                Log.d("Favourite_View_Model", "After Delay ")
+                adapter.notifyDataSetChanged()
+                Log.d("Favourite_View_Model", "After Notify ")
                 Snackbar.make(requireView(),"Meal Deleted",Snackbar.LENGTH_LONG).setAction(
                     "Undo",
                     View.OnClickListener{
